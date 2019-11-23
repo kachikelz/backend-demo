@@ -1,0 +1,30 @@
+language: node_js
+node_js:
+  - '11.12.0'
+cache:
+  directories:
+    - node_modules
+before_install:
+install:
+  - yarn install
+before_script:
+script:
+  - yarn test
+  - yarn run buld
+after_success:
+  -
+after_failure:
+after_script:
+before_deploy:
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  local_dir: build
+  on:
+    branch: master
+after_deploy:
+notifications:
+  email:
+    recipients:
+      - kevonyedikachi@gmail.com
