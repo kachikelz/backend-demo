@@ -1,0 +1,75 @@
+{
+  "name": "abarian-backend",
+  "version": "1.0.0",
+  "description": "Abarian  Ecommerce  Platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test nyc --reporter=html --reporter=text --require @babel/register --env=test mocha --timeout 10000 ./server/tests/**/*.test.js --exit",
+    "start": "node ./dist/server.js",
+    "dev": "DEBUG=app nodemon ./server/server.js --exec babel-node",
+    "build": "npm run clean && babel ./server -d ./dist",
+    "heroku-postbuild": "npm run build",
+    "clean": "rm -rf dist",
+    "coverage": "nyc mocha --timeout 10000 ./server/tests/**/*.test.js && nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EMacco/abarian-backend.git"
+  },
+  "author": "abarian dev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EMacco/abarian-backend/issues"
+  },
+  "homepage": "https://github.com/EMacco/abarian-backend#readme",
+  "dependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/register": "^7.7.0",
+    "@babel/runtime": "^7.7.2",
+    "@hapi/joi": "^16.1.7",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "bcrypt": "^3.0.6",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.9.1",
+    "swagger-jsdoc": "^3.4.0",
+    "swagger-ui-express": "^4.1.2",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@babel/polyfill": "^7.7.0",
+    "coveralls": "^3.0.7",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-import-resolver-babel-module": "^5.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "mocha": "^6.2.2",
+    "nodemon": "^1.19.4",
+    "nyc": "^14.1.1"
+  },
+  "nyc": {
+    "all": true,
+    "include": [
+      "server/**"
+    ],
+    "exclude": [
+      "**/tests/**",
+      "server/migrations",
+      "server/config",
+      "server/helpers/validationResponse.js",
+      "server/helpers/logger.js"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+swagger: '2.0'
+info:
+  description: 'Abarian ecommerce platform'
+  version: '1.0.0'
+  title: 'Abarian'
+  license:
+    name: 'MIT'
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+basePath: '/api/v1'
+tags:
+  - name: ''
+    description: ''
+
+schemes:
+  - 'https'
+  - 'http'
+paths: /
